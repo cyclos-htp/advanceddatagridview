@@ -167,7 +167,7 @@ namespace Zuby.ADGV
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MenuStrip_Closed(Object sender, EventArgs e)
+        private void MenuStrip_Closed(object sender, EventArgs e)
         {
             ResizeClean();
 
@@ -188,7 +188,7 @@ namespace Zuby.ADGV
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void MenuStrip_LostFocus(Object sender, EventArgs e)
+        private void MenuStrip_LostFocus(object sender, EventArgs e)
         {
             if (!ContainsFocus)
                 Close();
@@ -266,37 +266,19 @@ namespace Zuby.ADGV
         /// </summary>
         public int MaxChecklistNodes
         {
-            get
-            {
-                return _maxChecklistNodes;
-            }
-            set
-            {
-                _maxChecklistNodes = value;
-            }
+            get => _maxChecklistNodes;
+            set => _maxChecklistNodes = value;
         }
 
         /// <summary>
         /// Get the current MenuStripSortType type
         /// </summary>
-        public SortType ActiveSortType
-        {
-            get
-            {
-                return _activeSortType;
-            }
-        }
+        public SortType ActiveSortType => _activeSortType;
 
         /// <summary>
         /// Get the current MenuStripFilterType type
         /// </summary>
-        public FilterType ActiveFilterType
-        {
-            get
-            {
-                return _activeFilterType;
-            }
-        }
+        public FilterType ActiveFilterType => _activeFilterType;
 
         /// <summary>
         /// Get the DataType for the MenuStrip Filter
@@ -338,14 +320,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool DoesTextFilterRemoveNodesOnSearch
         {
-            get
-            {
-                return _checkTextFilterRemoveNodesOnSearch;
-            }
-            set
-            {
-                _checkTextFilterRemoveNodesOnSearch = value;
-            }
+            get => _checkTextFilterRemoveNodesOnSearch;
+            set => _checkTextFilterRemoveNodesOnSearch = value;
         }
 
         /// <summary>
@@ -353,14 +329,8 @@ namespace Zuby.ADGV
         /// </summary>
         public int TextFilterTextChangedDelayNodes
         {
-            get
-            {
-                return _textFilterTextChangedDelayNodes;
-            }
-            set
-            {
-                _textFilterTextChangedDelayNodes = value;
-            }
+            get => _textFilterTextChangedDelayNodes;
+            set => _textFilterTextChangedDelayNodes = value;
         }
 
         /// <summary>
@@ -368,14 +338,8 @@ namespace Zuby.ADGV
         /// </summary>
         public int TextFilterTextChangedDelayMs
         {
-            get
-            {
-                return _textFilterTextChangedDelayMs;
-            }
-            set
-            {
-                _textFilterTextChangedDelayMs = value;
-            }
+            get => _textFilterTextChangedDelayMs;
+            set => _textFilterTextChangedDelayMs = value;
         }
 
         #endregion
@@ -605,10 +569,7 @@ namespace Zuby.ADGV
         /// </summary>
         public string SortString
         {
-            get
-            {
-                return (!String.IsNullOrEmpty(_sortString) ? _sortString : "");
-            }
+            get => (!string.IsNullOrEmpty(_sortString) ? _sortString : "");
             private set
             {
                 cancelSortMenuItem.Enabled = (value != null && value.Length > 0);
@@ -637,10 +598,7 @@ namespace Zuby.ADGV
         /// </summary>
         public string FilterString
         {
-            get
-            {
-                return (!String.IsNullOrEmpty(_filterString) ? _filterString : "");
-            }
+            get => (!string.IsNullOrEmpty(_filterString) ? _filterString : "");
             private set
             {
                 cancelFilterMenuItem.Enabled = (value != null && value.Length > 0);
@@ -761,7 +719,7 @@ namespace Zuby.ADGV
             TreeNodeItemSelector selectAllNode = GetSelectAllNode();
             customFilterLastFiltersListMenuItem.Checked = false;
 
-            if (selectAllNode != null && selectAllNode.Checked && String.IsNullOrEmpty(checkTextFilter.Text))
+            if (selectAllNode != null && selectAllNode.Checked && string.IsNullOrEmpty(checkTextFilter.Text))
                 CancelFilterMenuItem_Click(null, new EventArgs());
             else
             {
@@ -1133,7 +1091,7 @@ namespace Zuby.ADGV
         private bool HasNodesChecked(TreeNodeItemSelector[] nodes)
         {
             bool state = false;
-            if (!String.IsNullOrEmpty(checkTextFilter.Text))
+            if (!string.IsNullOrEmpty(checkTextFilter.Text))
             {
                 state = nodes.Any(n => n.CheckState == CheckState.Checked && n.Text.ToLower().Contains(checkTextFilter.Text.ToLower()));
             }
@@ -1586,7 +1544,7 @@ namespace Zuby.ADGV
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CustomFilterLastFiltersListMenuItem_Paint(Object sender, PaintEventArgs e)
+        private void CustomFilterLastFiltersListMenuItem_Paint(object sender, PaintEventArgs e)
         {
             Rectangle rect = new Rectangle(customFilterLastFiltersListMenuItem.Width - 12, 7, 10, 10);
             ControlPaint.DrawMenuGlyph(e.Graphics, rect, MenuGlyph.Arrow, Color.Black, Color.Transparent);
@@ -1689,7 +1647,7 @@ namespace Zuby.ADGV
             string[] removednodesText = new string[] { };
             if (_checkTextFilterRemoveNodesOnSearch)
             {
-                removednodesText = _removedsessionNodes.Where(r => !String.IsNullOrEmpty(r.Text)).Select(r => r.Text.ToLower()).Distinct().ToArray();
+                removednodesText = _removedsessionNodes.Where(r => !string.IsNullOrEmpty(r.Text)).Select(r => r.Text.ToLower()).Distinct().ToArray();
             }
             for (int i = _loadedNodes.Length - 1; i >= 0; i--)
             {
@@ -1854,35 +1812,35 @@ namespace Zuby.ADGV
                 customFilterLastFiltersListMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVCustomFilter.ToString()];
                 sortASCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortDateTimeASC.ToString()];
                 sortDESCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortDateTimeDESC.ToString()];
-                sortASCMenuItem.Image = Properties.Resources.MenuStrip_OrderASCnum;
-                sortDESCMenuItem.Image = Properties.Resources.MenuStrip_OrderDESCnum;
+                sortASCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderASCnum.ToString()];
+                sortDESCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderDESCnum.ToString()];
             }
             else if (dataType == typeof(bool))
             {
                 customFilterLastFiltersListMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVCustomFilter.ToString()];
                 sortASCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortBoolASC.ToString()];
                 sortDESCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortBoolDESC.ToString()];
-                sortASCMenuItem.Image = Properties.Resources.MenuStrip_OrderASCbool;
-                sortDESCMenuItem.Image = Properties.Resources.MenuStrip_OrderDESCbool;
+                sortASCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderASCbool.ToString()];
+                sortDESCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderDESCbool.ToString()];
             }
-            else if (dataType == typeof(Int32) || dataType == typeof(Int64) || dataType == typeof(Int16) ||
-                dataType == typeof(UInt32) || dataType == typeof(UInt64) || dataType == typeof(UInt16) ||
-                dataType == typeof(Byte) || dataType == typeof(SByte) || dataType == typeof(Decimal) ||
-                dataType == typeof(Single) || dataType == typeof(Double))
+            else if (dataType == typeof(int) || dataType == typeof(long) || dataType == typeof(short) ||
+                dataType == typeof(uint) || dataType == typeof(ulong) || dataType == typeof(ushort) ||
+                dataType == typeof(byte) || dataType == typeof(sbyte) || dataType == typeof(decimal) ||
+                dataType == typeof(float) || dataType == typeof(double))
             {
                 customFilterLastFiltersListMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVCustomFilter.ToString()];
                 sortASCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortNumASC.ToString()];
                 sortDESCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortNumDESC.ToString()];
-                sortASCMenuItem.Image = Properties.Resources.MenuStrip_OrderASCnum;
-                sortDESCMenuItem.Image = Properties.Resources.MenuStrip_OrderDESCnum;
+                sortASCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderASCnum.ToString()];
+                sortDESCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderDESCnum.ToString()];
             }
             else
             {
                 customFilterLastFiltersListMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVCustomFilter.ToString()];
                 sortASCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortTextASC.ToString()];
                 sortDESCMenuItem.Text = AdvancedDataGridView.Translations[AdvancedDataGridView.TranslationKey.ADGVSortTextDESC.ToString()];
-                sortASCMenuItem.Image = Properties.Resources.MenuStrip_OrderASCtxt;
-                sortDESCMenuItem.Image = Properties.Resources.MenuStrip_OrderDESCtxt;
+                sortASCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderASCtxt.ToString()];
+                sortDESCMenuItem.Image = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_OrderDESCtxt.ToString()];
             }
 
             //set check filter textbox
@@ -2095,9 +2053,9 @@ namespace Zuby.ADGV
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ResizeBoxControlHost_Paint(Object sender, PaintEventArgs e)
+        private void ResizeBoxControlHost_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.DrawImage(Properties.Resources.MenuStrip_ResizeGrip, 0, 0);
+            e.Graphics.DrawImage(AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.MenuStrip_ResizeGrip.ToString()], 0, 0);
         }
 
         #endregion

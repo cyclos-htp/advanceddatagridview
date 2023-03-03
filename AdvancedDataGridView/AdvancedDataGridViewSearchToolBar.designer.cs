@@ -1,4 +1,6 @@
 ﻿
+using System.Windows.Forms;
+
 namespace Zuby.ADGV
 {
     partial class AdvancedDataGridViewSearchToolBar
@@ -38,13 +40,25 @@ namespace Zuby.ADGV
             this.button_search = new System.Windows.Forms.ToolStripButton();
             this.button_wholeword = new System.Windows.Forms.ToolStripButton();
             this.separator_search = new System.Windows.Forms.ToolStripSeparator();
+            this.imageList = new System.Windows.Forms.ImageList();
             this.SuspendLayout();
+            //
+            // imageList
+            //
+            this.imageList.ImageSize = new System.Drawing.Size(16, 16);
+            this.imageList.TransparentColor = System.Drawing.Color.Magenta;
+            this.imageList.ColorDepth = ColorDepth.Depth32Bit;
+            this.imageList.Images.Add(ImageListKeys.SearchToolBar_ButtonClose.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonClose);
+            this.imageList.Images.Add(ImageListKeys.SearchToolBar_ButtonFromBegin.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonFromBegin);
+            this.imageList.Images.Add(ImageListKeys.SearchToolBar_ButtonCaseSensitive.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonCaseSensitive);
+            this.imageList.Images.Add(ImageListKeys.SearchToolBar_ButtonSearch.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonSearch);
+            this.imageList.Images.Add(ImageListKeys.SearchToolBar_ButtonWholeWord.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonWholeWord);
             // 
             // button_close
             // 
             this.button_close.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.button_close.Image = global::Zuby.Properties.Resources.SearchToolBar_ButtonCaseSensitive;
-            this.button_close.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.button_close.ImageKey = ImageListKeys.SearchToolBar_ButtonClose.ToString();
+            this.button_close.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.button_close.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_close.Name = "button_close";
             this.button_close.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
@@ -86,8 +100,8 @@ namespace Zuby.ADGV
             // 
             this.button_frombegin.CheckOnClick = true;
             this.button_frombegin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.button_frombegin.Image = global::Zuby.Properties.Resources.SearchToolBar_ButtonFromBegin;
-            this.button_frombegin.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.button_frombegin.ImageKey = ImageListKeys.SearchToolBar_ButtonFromBegin.ToString();
+            this.button_frombegin.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.button_frombegin.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_frombegin.Name = "button_frombegin";
             this.button_frombegin.Size = new System.Drawing.Size(23, 20);
@@ -96,8 +110,8 @@ namespace Zuby.ADGV
             // 
             this.button_casesensitive.CheckOnClick = true;
             this.button_casesensitive.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.button_casesensitive.Image = global::Zuby.Properties.Resources.SearchToolBar_ButtonCaseSensitive;
-            this.button_casesensitive.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.button_casesensitive.ImageKey = ImageListKeys.SearchToolBar_ButtonCaseSensitive.ToString();
+            this.button_casesensitive.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.button_casesensitive.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_casesensitive.Name = "button_casesensitive";
             this.button_casesensitive.Size = new System.Drawing.Size(23, 20);
@@ -105,8 +119,8 @@ namespace Zuby.ADGV
             // button_search
             // 
             this.button_search.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.button_search.Image = global::Zuby.Properties.Resources.SearchToolBar_ButtonSearch;
-            this.button_search.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.button_search.ImageKey = ImageListKeys.SearchToolBar_ButtonSearch.ToString();
+            this.button_search.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.button_search.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_search.Name = "button_search";
             this.button_search.Overflow = System.Windows.Forms.ToolStripItemOverflow.Never;
@@ -117,8 +131,8 @@ namespace Zuby.ADGV
             // 
             this.button_wholeword.CheckOnClick = true;
             this.button_wholeword.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.button_wholeword.Image = global::Zuby.Properties.Resources.SearchToolBar_ButtonWholeWord;
-            this.button_wholeword.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.button_wholeword.ImageKey = ImageListKeys.SearchToolBar_ButtonWholeWord.ToString();
+            this.button_wholeword.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.SizeToFit;
             this.button_wholeword.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.button_wholeword.Margin = new System.Windows.Forms.Padding(1, 1, 1, 2);
             this.button_wholeword.Name = "button_wholeword";
@@ -149,6 +163,7 @@ namespace Zuby.ADGV
             this.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.Size = new System.Drawing.Size(0, 27);
             this.Resize += new System.EventHandler(this.ResizeMe);
+            this.ImageList = imageList;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -165,5 +180,6 @@ namespace Zuby.ADGV
         private System.Windows.Forms.ToolStripButton button_search;
         private System.Windows.Forms.ToolStripButton button_wholeword;
         private System.Windows.Forms.ToolStripSeparator separator_search;
+        private System.Windows.Forms.ImageList imageList;
     }
 }

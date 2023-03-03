@@ -81,6 +81,19 @@ namespace Zuby.ADGV
 
         #endregion
 
+        #region imageListe
+
+        public enum ImageListKeys
+        {
+            SearchToolBar_ButtonClose,
+            SearchToolBar_ButtonFromBegin,
+            SearchToolBar_ButtonCaseSensitive,
+            SearchToolBar_ButtonSearch,
+            SearchToolBar_ButtonWholeWord
+        }
+
+        #endregion
+
 
         #region constructor
 
@@ -140,7 +153,7 @@ namespace Zuby.ADGV
         {
             IDictionary<string, string> ret = new Dictionary<string, string>();
 
-            if (!String.IsNullOrEmpty(filename))
+            if (!string.IsNullOrEmpty(filename))
             {
                 //deserialize the file
                 try

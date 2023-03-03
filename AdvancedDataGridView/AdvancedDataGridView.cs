@@ -165,6 +165,60 @@ namespace Zuby.ADGV
 
         #endregion
 
+        #region images
+
+        public enum ImageListKeys
+        {
+            ColumnHeader_Filtered,
+            ColumnHeader_FilteredAndOrderedASC,
+            ColumnHeader_FilteredAndOrderedDESC,
+            ColumnHeader_OrderedASC,
+            ColumnHeader_OrderedDESC,
+            ColumnHeader_SavedFilters,
+            ColumnHeader_UnFiltered,
+            MenuStrip_OrderASCbool,
+            MenuStrip_OrderDESCbool,
+            MenuStrip_OrderASCnum,
+            MenuStrip_OrderDESCnum,
+            MenuStrip_OrderASCtxt,
+            MenuStrip_OrderDESCtxt,
+            MenuStrip_ResizeGrip,
+            SearchToolBar_ButtonCaseSensitive,
+            SearchToolBar_ButtonClose,
+            SearchToolBar_ButtonFromBegin,
+            SearchToolBar_ButtonSearch,
+            SearchToolBar_ButtonWholeWord
+        }
+
+        public static ImageList ImageList = new ImageList()
+        {
+            ImageSize = new Size(16, 16),
+            ColorDepth = ColorDepth.Depth32Bit,
+            Images =
+            {
+                {ImageListKeys.ColumnHeader_Filtered.ToString(), global::Zuby.Properties.Resources.ColumnHeader_Filtered},
+                {ImageListKeys.ColumnHeader_FilteredAndOrderedASC.ToString(), global::Zuby.Properties.Resources.ColumnHeader_FilteredAndOrderedASC},
+                {ImageListKeys.ColumnHeader_FilteredAndOrderedDESC.ToString(), global::Zuby.Properties.Resources.ColumnHeader_FilteredAndOrderedDESC},
+                {ImageListKeys.ColumnHeader_OrderedASC.ToString(), global::Zuby.Properties.Resources.ColumnHeader_OrderedASC},
+                {ImageListKeys.ColumnHeader_OrderedDESC.ToString(), global::Zuby.Properties.Resources.ColumnHeader_OrderedDESC},
+                {ImageListKeys.ColumnHeader_SavedFilters.ToString(), global::Zuby.Properties.Resources.ColumnHeader_SavedFilters},
+                {ImageListKeys.ColumnHeader_UnFiltered.ToString(), global::Zuby.Properties.Resources.ColumnHeader_UnFiltered},
+                {ImageListKeys.MenuStrip_OrderASCbool.ToString(), global::Zuby.Properties.Resources.MenuStrip_OrderASCbool},
+                {ImageListKeys.MenuStrip_OrderDESCbool.ToString(), global::Zuby.Properties.Resources.MenuStrip_OrderDESCbool},
+                {ImageListKeys.MenuStrip_OrderASCnum.ToString(), global::Zuby.Properties.Resources.MenuStrip_OrderASCnum},
+                {ImageListKeys.MenuStrip_OrderDESCnum.ToString(), global::Zuby.Properties.Resources.MenuStrip_OrderDESCnum},
+                {ImageListKeys.MenuStrip_OrderASCtxt.ToString(), global::Zuby.Properties.Resources.MenuStrip_OrderASCtxt},
+                {ImageListKeys.MenuStrip_OrderDESCtxt.ToString(), global::Zuby.Properties.Resources.MenuStrip_OrderDESCtxt},
+                {ImageListKeys.MenuStrip_ResizeGrip.ToString(), global::Zuby.Properties.Resources.MenuStrip_ResizeGrip},
+                {ImageListKeys.SearchToolBar_ButtonCaseSensitive.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonCaseSensitive},
+                {ImageListKeys.SearchToolBar_ButtonClose.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonClose},
+                {ImageListKeys.SearchToolBar_ButtonFromBegin.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonFromBegin},
+                {ImageListKeys.SearchToolBar_ButtonSearch.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonSearch},
+                {ImageListKeys.SearchToolBar_ButtonWholeWord.ToString(), global::Zuby.Properties.Resources.SearchToolBar_ButtonWholeWord}
+            }
+        };
+
+        #endregion
 
         #region class properties and fields
 
@@ -319,7 +373,7 @@ namespace Zuby.ADGV
         {
             IDictionary<string, string> ret = new Dictionary<string, string>();
 
-            if (!String.IsNullOrEmpty(filename))
+            if (!string.IsNullOrEmpty(filename))
             {
                 //deserialize the file
                 try
@@ -372,14 +426,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool SortStringChangedInvokeBeforeDatasourceUpdate
         {
-            get
-            {
-                return _sortStringChangedInvokeBeforeDatasourceUpdate;
-            }
-            set
-            {
-                _sortStringChangedInvokeBeforeDatasourceUpdate = value;
-            }
+            get => _sortStringChangedInvokeBeforeDatasourceUpdate;
+            set => _sortStringChangedInvokeBeforeDatasourceUpdate = value;
         }
 
         /// <summary>
@@ -387,14 +435,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool FilterStringChangedInvokeBeforeDatasourceUpdate
         {
-            get
-            {
-                return _filterStringChangedInvokeBeforeDatasourceUpdate;
-            }
-            set
-            {
-                _filterStringChangedInvokeBeforeDatasourceUpdate = value;
-            }
+            get => _filterStringChangedInvokeBeforeDatasourceUpdate;
+            set => _filterStringChangedInvokeBeforeDatasourceUpdate = value;
         }
 
         /// <summary>
@@ -748,14 +790,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool FilterAndSortEnabled
         {
-            get
-            {
-                return _filterAndSortEnabled;
-            }
-            set
-            {
-                _filterAndSortEnabled = value;
-            }
+            get => _filterAndSortEnabled;
+            set => _filterAndSortEnabled = value;
         }
         private bool _filterAndSortEnabled = true;
 
@@ -769,10 +805,7 @@ namespace Zuby.ADGV
         /// </summary>
         public string SortString
         {
-            get
-            {
-                return (!String.IsNullOrEmpty(_sortString) ? _sortString : "");
-            }
+            get => (!string.IsNullOrEmpty(_sortString) ? _sortString : "");
             private set
             {
                 string old = value;
@@ -941,10 +974,7 @@ namespace Zuby.ADGV
         /// </summary>
         public string FilterString
         {
-            get
-            {
-                return (!String.IsNullOrEmpty(_filterString) ? _filterString : "");
-            }
+            get => (!string.IsNullOrEmpty(_filterString) ? _filterString : "");
             private set
             {
                 string old = value;
@@ -1232,15 +1262,9 @@ namespace Zuby.ADGV
         /// <summary>
         /// Get all columns
         /// </summary>
-        private IEnumerable<ColumnHeaderCell> FilterableCells
-        {
-            get
-            {
-                return from DataGridViewColumn c in Columns
-                       where c.HeaderCell != null && c.HeaderCell is ColumnHeaderCell
-                       select (c.HeaderCell as ColumnHeaderCell);
-            }
-        }
+        private IEnumerable<ColumnHeaderCell> FilterableCells => from DataGridViewColumn c in Columns
+                                                                 where c.HeaderCell != null && c.HeaderCell is ColumnHeaderCell
+                                                                 select (c.HeaderCell as ColumnHeaderCell);
 
         #endregion
 

@@ -39,7 +39,7 @@ namespace Zuby.ADGV
 
         #region class properties and fields
 
-        private Image _filterImage = Properties.Resources.ColumnHeader_UnFiltered;
+        private Image _filterImage = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys.ColumnHeader_UnFiltered.ToString()];
         private Size _filterButtonImageSize = new Size(16, 16);
         private bool _filterButtonPressed = false;
         private bool _filterButtonOver = false;
@@ -152,10 +152,7 @@ namespace Zuby.ADGV
         /// </summary>
         public bool FilterAndSortEnabled
         {
-            get
-            {
-                return _filterEnabled;
-            }
+            get => _filterEnabled;
             set
             {
                 if (!value)
@@ -311,28 +308,16 @@ namespace Zuby.ADGV
         /// <summary>
         /// Get the Minimum size
         /// </summary>
-        public Size MinimumSize
-        {
-            get
-            {
-                return new Size(_filterButtonImageSize.Width + _filterButtonMargin.Left + _filterButtonMargin.Right,
+        public Size MinimumSize => new Size(_filterButtonImageSize.Width + _filterButtonMargin.Left + _filterButtonMargin.Right,
                     _filterButtonImageSize.Height + _filterButtonMargin.Bottom + _filterButtonMargin.Top);
-            }
-        }
 
         /// <summary>
         /// Get or Set the Sort enabled status
         /// </summary>
         public bool IsSortEnabled
         {
-            get
-            {
-                return MenuStrip.IsSortEnabled;
-            }
-            set
-            {
-                MenuStrip.IsSortEnabled = value;
-            }
+            get => MenuStrip.IsSortEnabled;
+            set => MenuStrip.IsSortEnabled = value;
         }
 
         /// <summary>
@@ -340,14 +325,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool IsFilterEnabled
         {
-            get
-            {
-                return MenuStrip.IsFilterEnabled;
-            }
-            set
-            {
-                MenuStrip.IsFilterEnabled = value;
-            }
+            get => MenuStrip.IsFilterEnabled;
+            set => MenuStrip.IsFilterEnabled = value;
         }
 
         /// <summary>
@@ -355,14 +334,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool IsFilterChecklistEnabled
         {
-            get
-            {
-                return MenuStrip.IsFilterChecklistEnabled;
-            }
-            set
-            {
-                MenuStrip.IsFilterChecklistEnabled = value;
-            }
+            get => MenuStrip.IsFilterChecklistEnabled;
+            set => MenuStrip.IsFilterChecklistEnabled = value;
         }
 
         /// <summary>
@@ -370,14 +343,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool IsFilterDateAndTimeEnabled
         {
-            get
-            {
-                return MenuStrip.IsFilterDateAndTimeEnabled;
-            }
-            set
-            {
-                MenuStrip.IsFilterDateAndTimeEnabled = value;
-            }
+            get => MenuStrip.IsFilterDateAndTimeEnabled;
+            set => MenuStrip.IsFilterDateAndTimeEnabled = value;
         }
 
         /// <summary>
@@ -385,14 +352,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool IsMenuStripFilterNOTINLogicEnabled
         {
-            get
-            {
-                return MenuStrip.IsFilterNOTINLogicEnabled;
-            }
-            set
-            {
-                MenuStrip.IsFilterNOTINLogicEnabled = value;
-            }
+            get => MenuStrip.IsFilterNOTINLogicEnabled;
+            set => MenuStrip.IsFilterNOTINLogicEnabled = value;
         }
 
         /// <summary>
@@ -400,14 +361,8 @@ namespace Zuby.ADGV
         /// </summary>
         public bool DoesTextFilterRemoveNodesOnSearch
         {
-            get
-            {
-                return MenuStrip.DoesTextFilterRemoveNodesOnSearch;
-            }
-            set
-            {
-                MenuStrip.DoesTextFilterRemoveNodesOnSearch = value;
-            }
+            get => MenuStrip.DoesTextFilterRemoveNodesOnSearch;
+            set => MenuStrip.DoesTextFilterRemoveNodesOnSearch = value;
         }
 
         /// <summary>
@@ -415,14 +370,8 @@ namespace Zuby.ADGV
         /// </summary>
         public int TextFilterTextChangedDelayNodes
         {
-            get
-            {
-                return MenuStrip.TextFilterTextChangedDelayNodes;
-            }
-            set
-            {
-                MenuStrip.TextFilterTextChangedDelayNodes = value;
-            }
+            get => MenuStrip.TextFilterTextChangedDelayNodes;
+            set => MenuStrip.TextFilterTextChangedDelayNodes = value;
         }
 
         /// <summary>
@@ -575,7 +524,6 @@ namespace Zuby.ADGV
             MenuStrip.SortChanged -= MenuStrip_SortChanged;
         }
 
-
         #endregion
 
 
@@ -597,27 +545,37 @@ namespace Zuby.ADGV
         {
             if (ActiveFilterType == MenuStrip.FilterType.Loaded)
             {
-                _filterImage = Properties.Resources.ColumnHeader_SavedFilters;
+                _filterImage = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys
+                    .ColumnHeader_SavedFilters.ToString()];
             }
             else
             {
                 if (ActiveFilterType == MenuStrip.FilterType.None)
                 {
                     if (ActiveSortType == MenuStrip.SortType.None)
-                        _filterImage = Properties.Resources.ColumnHeader_UnFiltered;
+                        _filterImage =
+                            AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys
+                                                              .ColumnHeader_UnFiltered.ToString()];
                     else if (ActiveSortType == MenuStrip.SortType.ASC)
-                        _filterImage = Properties.Resources.ColumnHeader_OrderedASC;
+                        _filterImage =
+                            AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys
+                                .ColumnHeader_OrderedASC.ToString()];
                     else
-                        _filterImage = Properties.Resources.ColumnHeader_OrderedDESC;
+                        _filterImage =
+                            AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys
+                                .ColumnHeader_OrderedDESC.ToString()];
                 }
                 else
                 {
                     if (ActiveSortType == MenuStrip.SortType.None)
-                        _filterImage = Properties.Resources.ColumnHeader_Filtered;
+                        _filterImage = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys
+                            .ColumnHeader_Filtered.ToString()];
                     else if (ActiveSortType == MenuStrip.SortType.ASC)
-                        _filterImage = Properties.Resources.ColumnHeader_FilteredAndOrderedASC;
+                        _filterImage = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys
+                            .ColumnHeader_FilteredAndOrderedASC.ToString()];
                     else
-                        _filterImage = Properties.Resources.ColumnHeader_FilteredAndOrderedDESC;
+                        _filterImage = AdvancedDataGridView.ImageList.Images[AdvancedDataGridView.ImageListKeys
+                            .ColumnHeader_FilteredAndOrderedDESC.ToString()];
                 }
             }
         }
