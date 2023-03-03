@@ -460,9 +460,11 @@ namespace Zuby.ADGV
         protected override void OnPaint(PaintEventArgs e)
         {
             //check if translations are changed and update components
-            if (!((_translationsRefreshComponentTranslationsCheck == Translations) || (_translationsRefreshComponentTranslationsCheck.Count == Translations.Count && !_translationsRefreshComponentTranslationsCheck.Except(Translations).Any())))
+            if (!(_translationsRefreshComponentTranslationsCheck == Translations
+                  || (_translationsRefreshComponentTranslationsCheck.Count == Translations.Count
+                      && !_translationsRefreshComponentTranslationsCheck.Except(Translations).Any())))
             {
-                _translationsRefreshComponentTranslationsCheck = Translations;
+                _translationsRefreshComponentTranslationsCheck = Translations.ToDictionary(e => e.Key, e => e.Value);
                 RefreshComponentTranslations();
             }
 
