@@ -180,6 +180,40 @@ namespace Zuby.ADGV
         private bool _sortStringChangedInvokeBeforeDatasourceUpdate = true;
         private bool _filterStringChangedInvokeBeforeDatasourceUpdate = true;
 
+        private Color _headerMenuStripButtonBackgroundColor = Color.White;
+        private Color _headerMenuStripButtonBorderColor = Color.Gray;
+        private Color _headerMenuStripButtonHoverColor = Color.FromArgb(50, Color.White);
+
+        public Color HeaderMenuStripButtonBackgroundColor
+        {
+            get => _headerMenuStripButtonBackgroundColor;
+            set
+            {
+                _headerMenuStripButtonBackgroundColor = value;
+                OnHeaderMenuStripButtonBackgroundColorChanged();
+            }
+        }
+
+        public Color HeaderMenuStripBorderBackgroundColor
+        {
+            get => _headerMenuStripButtonBorderColor;
+            set
+            {
+                _headerMenuStripButtonBorderColor = value;
+                OnHeaderMenuStripButtonBorderColorChanged();
+            }
+        }
+
+        public Color HeaderMenuStripButtonHoverColor
+        {
+            get => _headerMenuStripButtonHoverColor;
+            set
+            {
+                _headerMenuStripButtonHoverColor = value;
+                OnHeaderMenuStripButtonHoverColorChanged();
+            }
+        }
+
         #endregion
 
 
@@ -1224,6 +1258,9 @@ namespace Zuby.ADGV
             cell.SortChanged += new ColumnHeaderCellEventHandler(Cell_SortChanged);
             cell.FilterChanged += new ColumnHeaderCellEventHandler(Cell_FilterChanged);
             cell.FilterPopup += new ColumnHeaderCellEventHandler(Cell_FilterPopup);
+            cell.MenuStripButtonBackgroundColor = this._headerMenuStripButtonBackgroundColor;
+            cell.MenuStripButtonBorderColor = this._headerMenuStripButtonBorderColor;
+            cell.MenuStripButtonHoverColor = this._headerMenuStripButtonHoverColor;
             e.Column.MinimumWidth = cell.MinimumSize.Width;
             if (ColumnHeadersHeight < cell.MinimumSize.Height)
                 ColumnHeadersHeight = cell.MinimumSize.Height;
@@ -1445,5 +1482,36 @@ namespace Zuby.ADGV
 
         #endregion
 
+        #region header events
+
+        private void OnHeaderMenuStripButtonBackgroundColorChanged()
+        {
+            foreach (DataGridViewColumn column in Columns)
+            {
+                if (column.HeaderCell is ColumnHeaderCell cell)
+                    cell.MenuStripButtonBackgroundColor = _headerMenuStripButtonBackgroundColor;
+            }
+        }
+
+        private void OnHeaderMenuStripButtonBorderColorChanged()
+        {
+            foreach (DataGridViewColumn column in Columns)
+            {
+                if (column.HeaderCell is ColumnHeaderCell cell)
+                    cell.MenuStripButtonBorderColor = _headerMenuStripButtonBorderColor;
+            }
+        }
+
+        private void OnHeaderMenuStripButtonHoverColorChanged()
+        {
+            foreach (DataGridViewColumn column in Columns)
+            {
+                if (column.HeaderCell is ColumnHeaderCell cell)
+                    cell.MenuStripButtonHoverColor = _headerMenuStripButtonHoverColor;
+            }
+        }
+
+
+        #endregion
     }
 }

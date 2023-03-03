@@ -53,6 +53,40 @@ namespace Zuby.ADGV
         /// </summary>
         public MenuStrip MenuStrip { get; private set; }
 
+        private Color _menuStripButtonBackgroundColor = Color.White;
+        private Color _menuStripButtonBorderColor = Color.Gray;
+        private Color _menuStripButtonHoverColor = Color.FromArgb(50, Color.White);
+
+        public Color MenuStripButtonBackgroundColor
+        {
+            get => _menuStripButtonBackgroundColor;
+            set
+            {
+                _menuStripButtonBackgroundColor = value;
+                RepaintCell();
+            }
+        }
+
+        public Color MenuStripButtonBorderColor
+        {
+            get => _menuStripButtonBorderColor;
+            set
+            {
+                _menuStripButtonBorderColor = value;
+                RepaintCell();
+            }
+        }
+
+        public Color MenuStripButtonHoverColor
+        {
+            get => _menuStripButtonHoverColor;
+            set
+            {
+                _menuStripButtonHoverColor = value;
+                RepaintCell();
+            }
+        }
+
         #endregion
 
 
@@ -633,9 +667,9 @@ namespace Zuby.ADGV
                 Rectangle buttonBounds = _filterButtonOffsetBounds;
                 if (clipBounds.IntersectsWith(buttonBounds))
                 {
-                    ControlPaint.DrawBorder(graphics, buttonBounds, Color.Gray, ButtonBorderStyle.Solid);
+                    ControlPaint.DrawBorder(graphics, buttonBounds, _menuStripButtonBorderColor, ButtonBorderStyle.Solid);
                     buttonBounds.Inflate(-1, -1);
-                    using (Brush b = new SolidBrush(_filterButtonOver ? Color.WhiteSmoke : Color.White))
+                    using (Brush b = new SolidBrush(_filterButtonOver ? _menuStripButtonHoverColor : _menuStripButtonBackgroundColor))
                         graphics.FillRectangle(b, buttonBounds);
                     graphics.DrawImage(_filterImage, buttonBounds);
                 }
